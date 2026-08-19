@@ -6,9 +6,13 @@ local LocalPlayer = Players.LocalPlayer
 
 -- Configuration
 local CORRECT_KEY = "YuanIsCool"
-local KEY_LINK = "https://discord.gg/XPBxDSpJHn"
+local KEY_LINK = "https://link-target.net/8487373/rbm2RHgBZtsD"
 
-local PINK = Color3.fromRGB(255, 105, 180)
+-- Theme Colors (Light Blue UI & Blue ESP)
+local LIGHT_BLUE = Color3.fromRGB(135, 206, 250)
+local DARK_BLUE = Color3.fromRGB(0, 102, 204)
+local BLUE_ESP = Color3.fromRGB(30, 144, 255)
+
 local FOV_SIZE = 250
 local MAX_DISTANCE = 500
 
@@ -23,15 +27,16 @@ local function createKeySystem(onSuccess)
     local frame = Instance.new("Frame")
     frame.Size = UDim2.new(0, 320, 0, 200)
     frame.Position = UDim2.new(0.5, -160, 0.5, -100)
-    frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-    frame.BorderSizePixel = 0
+    frame.BackgroundColor3 = Color3.fromRGB(20, 25, 35)
+    frame.BorderSizePixel = 2
+    frame.BorderColor3 = LIGHT_BLUE
     frame.Parent = keyGui
 
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, 0, 0, 40)
     title.BackgroundTransparency = 1
     title.Text = "Yuan Own Hub - Key System"
-    title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    title.TextColor3 = LIGHT_BLUE
     title.TextSize = 18
     title.Font = Enum.Font.GothamBold
     title.Parent = frame
@@ -39,9 +44,11 @@ local function createKeySystem(onSuccess)
     local textBox = Instance.new("TextBox")
     textBox.Size = UDim2.new(0, 260, 0, 35)
     textBox.Position = UDim2.new(0.5, -130, 0, 50)
-    textBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-    textBox.BorderSizePixel = 0
+    textBox.BackgroundColor3 = Color3.fromRGB(30, 40, 55)
+    textBox.BorderSizePixel = 1
+    textBox.BorderColor3 = LIGHT_BLUE
     textBox.PlaceholderText = "Enter Key Here..."
+    textBox.PlaceholderColor3 = Color3.fromRGB(150, 180, 210)
     textBox.Text = ""
     textBox.TextColor3 = Color3.fromRGB(255, 255, 255)
     textBox.TextSize = 14
@@ -51,7 +58,7 @@ local function createKeySystem(onSuccess)
     local submitBtn = Instance.new("TextButton")
     submitBtn.Size = UDim2.new(0, 125, 0, 35)
     submitBtn.Position = UDim2.new(0, 30, 0, 100)
-    submitBtn.BackgroundColor3 = Color3.fromRGB(50, 180, 50)
+    submitBtn.BackgroundColor3 = DARK_BLUE
     submitBtn.BorderSizePixel = 0
     submitBtn.Text = "Submit Key"
     submitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -62,7 +69,7 @@ local function createKeySystem(onSuccess)
     local getKeyBtn = Instance.new("TextButton")
     getKeyBtn.Size = UDim2.new(0, 125, 0, 35)
     getKeyBtn.Position = UDim2.new(0, 165, 0, 100)
-    getKeyBtn.BackgroundColor3 = Color3.fromRGB(80, 80, 200)
+    getKeyBtn.BackgroundColor3 = Color3.fromRGB(70, 130, 180)
     getKeyBtn.BorderSizePixel = 0
     getKeyBtn.Text = "Get Key"
     getKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -75,7 +82,7 @@ local function createKeySystem(onSuccess)
     statusLabel.Position = UDim2.new(0, 0, 0, 150)
     statusLabel.BackgroundTransparency = 1
     statusLabel.Text = ""
-    statusLabel.TextColor3 = Color3.fromRGB(255, 80, 80)
+    statusLabel.TextColor3 = LIGHT_BLUE
     statusLabel.TextSize = 13
     statusLabel.Font = Enum.Font.Gotham
     statusLabel.Parent = frame
@@ -83,7 +90,7 @@ local function createKeySystem(onSuccess)
     getKeyBtn.MouseButton1Click:Connect(function()
         if setclipboard then
             setclipboard(KEY_LINK)
-            statusLabel.TextColor3 = Color3.fromRGB(80, 255, 80)
+            statusLabel.TextColor3 = LIGHT_BLUE
             statusLabel.Text = "Key link copied to clipboard!"
         else
             statusLabel.TextColor3 = Color3.fromRGB(255, 80, 80)
@@ -93,7 +100,7 @@ local function createKeySystem(onSuccess)
 
     submitBtn.MouseButton1Click:Connect(function()
         if textBox.Text == CORRECT_KEY then
-            statusLabel.TextColor3 = Color3.fromRGB(80, 255, 80)
+            statusLabel.TextColor3 = LIGHT_BLUE
             statusLabel.Text = "Correct Key! Loading..."
             task.wait(1)
             keyGui:Destroy()
@@ -114,18 +121,18 @@ local function initHub()
         local distanceText = drawingWorks and Drawing.new("Text") or nil
         local highlight = Instance.new("Highlight")
 
-        tracer.Color = PINK
+        tracer.Color = BLUE_ESP
         tracer.Thickness = 1
 
         if distanceText then
-            distanceText.Color = PINK
+            distanceText.Color = BLUE_ESP
             distanceText.Size = 13
             distanceText.Center = true
             distanceText.Outline = true
         end
 
-        highlight.FillColor = PINK
-        highlight.OutlineColor = PINK
+        highlight.FillColor = BLUE_ESP
+        highlight.OutlineColor = BLUE_ESP
         highlight.FillTransparency = 0.8
         highlight.OutlineTransparency = 0
         highlight.Parent = game:GetService("CoreGui")
@@ -186,7 +193,7 @@ local function initHub()
 
     local fovCircle = drawingWorks and (function()
         local circle = Drawing.new("Circle")
-        circle.Color = PINK
+        circle.Color = BLUE_ESP
         circle.Thickness = 1
         circle.Transparency = 1
         circle.Radius = FOV_SIZE
@@ -258,3 +265,4 @@ end
 
 -- Initialize Key System
 createKeySystem(initHub)
+
