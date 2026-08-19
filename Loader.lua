@@ -5,13 +5,12 @@ local Camera = workspace.CurrentCamera
 local LocalPlayer = Players.LocalPlayer
 
 -- Configuration
-local CORRECT_KEY = "YuanIsCool" -- Updated Key
-local KEY_LINK = "https://discord.gg/XPBxDSpJHn" -- Link where users get the key
+local CORRECT_KEY = "YuanIsCool"
+local KEY_LINK = "https://discord.gg/XPBxDSpJHn"
 
 local PINK = Color3.fromRGB(255, 105, 180)
 local FOV_SIZE = 250
 local MAX_DISTANCE = 500
-local DISCORD_LINK = "https://discord.gg/XPBxDSpJHn"
 
 local drawingWorks = pcall(function() return Drawing.new("Line") end)
 
@@ -108,81 +107,6 @@ end
 
 -- Main Hub Execution Logic
 local function initHub()
-    local function showDiscordMenu()
-        local screenGui = Instance.new("ScreenGui")
-        screenGui.Parent = game:GetService("CoreGui")
-
-        local frame = Instance.new("Frame")
-        frame.Size = UDim2.new(0, 300, 0, 150)
-        frame.Position = UDim2.new(0.5, -150, 0.5, -75)
-        frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-        frame.BorderSizePixel = 0
-        frame.Parent = screenGui
-
-        local textLabel = Instance.new("TextLabel")
-        textLabel.Size = UDim2.new(1, 0, 0, 50)
-        textLabel.Position = UDim2.new(0, 0, 0, 10)
-        textLabel.BackgroundTransparency = 1
-        textLabel.Text = "Yuan Own Hub\nJoin the discord?"
-        textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-        textLabel.TextSize = 18
-        textLabel.Font = Enum.Font.GothamBold
-        textLabel.Parent = frame
-
-        local declineButton = Instance.new("TextButton")
-        declineButton.Size = UDim2.new(0, 120, 0, 35)
-        declineButton.Position = UDim2.new(0, 20, 0, 85)
-        declineButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-        declineButton.BorderSizePixel = 0
-        declineButton.Text = "Decline"
-        declineButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        declineButton.TextSize = 16
-        declineButton.Font = Enum.Font.Gotham
-        declineButton.Parent = frame
-
-        local acceptButton = Instance.new("TextButton")
-        acceptButton.Size = UDim2.new(0, 120, 0, 35)
-        acceptButton.Position = UDim2.new(0, 160, 0, 85)
-        acceptButton.BackgroundColor3 = Color3.fromRGB(50, 200, 50)
-        acceptButton.BorderSizePixel = 0
-        acceptButton.Text = "Accept"
-        acceptButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        acceptButton.TextSize = 16
-        acceptButton.Font = Enum.Font.Gotham
-        acceptButton.Parent = frame
-
-        local function closeMenu()
-            screenGui:Destroy()
-        end
-
-        declineButton.MouseButton1Click:Connect(closeMenu)
-
-        acceptButton.MouseButton1Click:Connect(function()
-            if setclipboard then setclipboard(DISCORD_LINK) end
-            pcall(function()
-                request({
-                    Url = 'http://127.0.0.1:6463/rpc?v=1',
-                    Method = 'POST',
-                    Headers = {
-                        ['Content-Type'] = 'application/json',
-                        Origin = 'https://discord.com'
-                    },
-                    Body = HttpService:JSONEncode({
-                        cmd = 'INVITE_BROWSER',
-                        nonce = HttpService:GenerateGUID(false),
-                        args = {code = "XPBxDSpJHn"}
-                    })
-                })
-            end)
-            textLabel.Text = "Link copied to clipboard!"
-            declineButton.Visible = false
-            acceptButton.Visible = false
-            task.delay(5, closeMenu)
-        end)
-    end
-
-    showDiscordMenu()
-
     local function createESP(player)
         if player == LocalPlayer then return end
 
@@ -334,4 +258,3 @@ end
 
 -- Initialize Key System
 createKeySystem(initHub)
-
