@@ -35,7 +35,7 @@ local function createKeySystem(onSuccess)
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, 0, 0, 40)
     title.BackgroundTransparency = 1
-    title.Text = "Yuan Own Hub - Key System"
+    title.Text = "NeatsHub(Yuan) - Key System"
     title.TextColor3 = LIGHT_BLUE
     title.TextSize = 18
     title.Font = Enum.Font.GothamBold
@@ -265,4 +265,3 @@ end
 
 -- Initialize Key System
 createKeySystem(initHub)
-
